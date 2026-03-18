@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Produkter | Billigt Filament</title>
+    <link rel="stylesheet" href="Assets/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-grid">
+            <a href="index.html" class="logo">BILLIGT<span>FILAMENT</span></a>
+            <nav class="main-nav">
+                <a href="index.html">Forside</a>
+                <a href="products.html">Produkter</a>
+                <a href="about.html">Om os</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 40px 0;">
+        <h1 style="margin-bottom: 10px;">Vores Sortiment</h1>
+        <p id="count" class="results-count">Henter produkter...</p>
+
+        <div class="filters-container">
+            <div class="filter-group">
+                <label>Søg</label>
+                <input type="text" id="searchField" placeholder="Søg her...">
+            </div>
+
+            <div class="filter-group">
+                <label>Kategori</label>
+                <select id="categoryFilter" class="filter-input">
+                    <option value="all">Alle Materialer</option>
+                    <option value="PLA">PLA</option>
+                    <option value="PETG">PETG</option>
+                    <option value="SILK">Silk</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Sortér efter</label>
+                <select id="sortOrder" class="filter-input">
+                    <option value="default">Relevans</option>
+                    <option value="low">Pris: Lav til Høj</option>
+                    <option value="high">Pris: Høj til Lav</option>
+                </select>
+            </div>
+
+            <div class="filter-group" style="justify-content: center; flex-direction: row; align-items: center; gap: 10px; padding-top: 20px;">
+                <input type="checkbox" id="stockFilter" class="filter-input" style="width: 20px; height: 20px;">
+                <label style="margin: 0; cursor: pointer;" for="stockFilter">Kun på lager</label>
+            </div>
+        </div>
+
+        <div id="productGrid" class="product-grid">
+            </div>
+    </main>
+
+    <footer class="site-footer"><p>&copy; 2026 Billigt Filament ApS</p></footer>
+    <script src="Assets/script.js"></script>
+</body>
+</html>
