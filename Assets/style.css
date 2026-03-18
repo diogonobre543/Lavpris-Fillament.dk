@@ -16,13 +16,30 @@
     --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
 }
 
-/* 1. GLOBAL & HEADER */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font); color: var(--navy); background: white; line-height: 1.6; }
-.container { width: min(1200px, 92%); margin: 0 auto; }
+/* 1. GLOBAL & RESET */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* CORREÇÃO: Impede o deslize lateral indesejado */
+    font-family: var(--font);
+    color: var(--navy);
+    background: white;
+    line-height: 1.6;
+}
+
+.container { 
+    width: min(1200px, 92%); 
+    margin: 0 auto; 
+}
+
+/* 2. HEADER & NAVIGATION */
 .site-header {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     padding: 20px 0;
     position: sticky;
@@ -30,26 +47,98 @@ body { font-family: var(--font); color: var(--navy); background: white; line-hei
     z-index: 1000;
     border-bottom: 1px solid var(--border);
 }
-.header-grid { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--navy); letter-spacing: -1px; }
-.logo span { color: var(--primary); }
-.main-nav a { margin-left: 25px; font-weight: 600; text-decoration: none; color: var(--navy); font-size: 0.9rem; }
-.main-nav a.active { color: var(--primary); }
 
-/* 2. HERO SECTION (HOME) */
+.header-grid { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.logo { 
+    font-size: 1.5rem; 
+    font-weight: 800; 
+    text-decoration: none; 
+    color: var(--navy); 
+    letter-spacing: -1px; 
+    z-index: 1100;
+}
+.logo span { color: var(--primary); }
+
+.main-nav { 
+    display: flex; 
+    align-items: center; 
+}
+
+.main-nav a { 
+    margin-left: 25px; 
+    font-weight: 600; 
+    text-decoration: none; 
+    color: var(--navy); 
+    font-size: 0.9rem; 
+    transition: 0.3s;
+}
+.main-nav a.active { color: var(--primary); }
+.main-nav a:hover { color: var(--primary); }
+
+/* BOTÃO HAMBÚRGUER */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background: var(--navy);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* 3. HERO SECTION (HOME) */
 .home-hero-new {
     background: radial-gradient(circle at 70% 30%, #ffffff 0%, #f1f5f9 100%);
     padding: 80px 0;
 }
-.hero-grid-new { display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; }
-.hero-text-new h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 800; line-height: 1; letter-spacing: -3px; margin-bottom: 25px; }
-.hero-text-new p { font-size: 1.2rem; color: var(--slate); margin-bottom: 40px; max-width: 500px; }
 
-.hero-products-new { display: flex; gap: 20px; justify-content: flex-end; }
+.hero-grid-new { 
+    display: grid; 
+    grid-template-columns: 1.1fr 1fr; 
+    gap: 50px; 
+    align-items: center; 
+}
+
+.hero-text-new h1 { 
+    font-size: clamp(2.5rem, 5vw, 4.2rem); 
+    font-weight: 800; 
+    line-height: 1; 
+    letter-spacing: -3px; 
+    margin-bottom: 25px; 
+}
+
+.hero-text-new p { 
+    font-size: 1.2rem; 
+    color: var(--slate); 
+    margin-bottom: 40px; 
+    max-width: 500px; 
+}
+
+.hero-products-new { 
+    display: flex; 
+    gap: 20px; 
+    justify-content: flex-end; 
+}
+
 .hero-card-1 { transform: rotate(-6deg) translateY(20px); }
 .hero-card-2 { transform: rotate(4deg) translateY(-20px); }
 
-/* 3. FILTROS (PRODUTOS) - RESOLVE O "AMONTOADO" */
+/* 4. FILTROS & PRODUTOS */
 .filters-wrapper {
     background: var(--ice);
     padding: 35px;
@@ -57,63 +146,167 @@ body { font-family: var(--font); color: var(--navy); background: white; line-hei
     border: 1px solid var(--border);
     margin: 40px 0;
 }
-.filter-row { display: flex; gap: 25px; margin-bottom: 30px; flex-wrap: wrap; }
-.filter-group { flex: 1; min-width: 250px; display: flex; flex-direction: column; gap: 8px; }
-.filter-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--slate); letter-spacing: 1px; }
+
+.filter-row { 
+    display: flex; 
+    gap: 25px; 
+    margin-bottom: 30px; 
+    flex-wrap: wrap; 
+}
+
+.filter-group { 
+    flex: 1; 
+    min-width: 250px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+}
+
+.filter-label { 
+    font-size: 0.7rem; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    color: var(--slate); 
+    letter-spacing: 1px; 
+}
 
 .search-input, .sort-select {
-    width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--border);
-    background: white; font-family: inherit; font-size: 0.95rem; outline: none; transition: 0.3s;
+    width: 100%; 
+    padding: 15px; 
+    border-radius: 12px; 
+    border: 1px solid var(--border);
+    background: white; 
+    font-family: inherit; 
+    font-size: 0.95rem; 
+    outline: none; 
 }
-.search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
 
-.material-selection { border-top: 1px solid var(--border); padding-top: 25px; }
-.material-boxes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
 .material-btn {
-    background: white; border: 1px solid var(--border); padding: 12px 20px;
-    border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s;
+    background: white; 
+    border: 1px solid var(--border); 
+    padding: 12px 20px;
+    border-radius: 10px; 
+    font-weight: 700; 
+    cursor: pointer; 
+    transition: 0.3s;
 }
-.material-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
+.material-btn.active { 
+    background: var(--primary); 
+    border-color: var(--primary); 
+    color: white; 
+}
 
-/* 4. CARDS DE PRODUTOS - DESIGN PREMIUM */
-.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding-bottom: 80px; }
-.product-card {
-    background: white; border-radius: 24px; padding: 20px; border: 1px solid var(--border);
-    display: flex; flex-direction: column; transition: 0.4s ease; height: 100%;
+/* CARDS DE PRODUTO */
+.product-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 30px; 
+    padding-bottom: 80px; 
 }
-.product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
+
+.product-card {
+    background: white; 
+    border-radius: 24px; 
+    padding: 20px; 
+    border: 1px solid var(--border);
+    display: flex; 
+    flex-direction: column; 
+    transition: 0.4s ease; 
+    height: 100%;
+}
+
+.product-card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: var(--shadow); 
+}
 
 .img-wrapper {
-    background: var(--ice); border-radius: 18px; aspect-ratio: 1;
-    display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden;
+    background: var(--ice); 
+    border-radius: 18px; 
+    aspect-ratio: 1;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 20px; 
+    overflow: hidden;
 }
-.img-wrapper img { width: 85%; height: 85%; object-fit: contain; transition: 0.4s; }
-.product-card:hover img { transform: scale(1.08); }
 
-.stock-tag { color: var(--success); font-size: 0.75rem; font-weight: 800; margin-bottom: 10px; display: block; }
-.product-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; min-height: 3rem; color: var(--navy); }
-.price { font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-top: auto; }
+.img-wrapper img { 
+    width: 85%; 
+    height: 85%; 
+    object-fit: contain; 
+}
 
-/* BOTÃO DE COMPRA (ADEUS LINKS AZUIS) */
+.price { 
+    font-size: 1.5rem; 
+    font-weight: 800; 
+    margin-top: auto; 
+}
+
 .btn-buy {
-    background: var(--navy); color: white; text-align: center; padding: 15px;
-    border-radius: 12px; font-weight: 700; margin-top: 20px; display: block; text-decoration: none; transition: 0.3s;
+    background: var(--navy); 
+    color: white; 
+    text-align: center; 
+    padding: 15px;
+    border-radius: 12px; 
+    font-weight: 700; 
+    margin-top: 20px; 
+    display: block; 
+    text-decoration: none;
 }
-.btn-buy:hover { background: var(--primary); }
 
-/* 5. PÁGINA OM OS (MISSÃO) */
-.about-hero { padding: 100px 0 60px; text-align: center; background: var(--ice); }
-.about-hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -2px; }
-.about-hero .subtitle { font-size: 1.2rem; color: var(--slate); max-width: 650px; margin: 0 auto; }
+/* 5. SOBRE NÓS (ABOUT) */
+.about-hero { padding: 80px 0; text-align: center; background: var(--ice); }
+.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.about-card { background: white; padding: 40px; border-radius: 24px; border: 1px solid var(--border); }
 
-.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-.about-card { background: white; padding: 40px; border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow); }
-.about-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
-
-/* 6. RESPONSIVIDADE */
+/* 6. RESPONSIVIDADE - CORREÇÃO DO ERRO DO MENU */
 @media (max-width: 900px) {
-    .hero-grid-new { grid-template-columns: 1fr; text-align: center; }
-    .hero-text-new p { margin: 0 auto 30px; }
-    .hero-products-new { justify-content: center; margin-top: 40px; }
-    .hero-card-1, .hero-card-2 { transform: none; }
+    .hamburger { display: flex; }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Escondido */
+        width: 100%;  /* Ocupa a largura total */
+        height: 100vh;
+        background: #ffffff !important; /* Fundo branco sólido */
+        
+        /* Centralização Vertical dos Links */
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        
+        gap: 40px;
+        transition: 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        z-index: 1050;
+        visibility: hidden; /* CORREÇÃO: Não deixa clicar no menu invisível */
+    }
+
+    .main-nav.active {
+        right: 0;
+        visibility: visible;
+    }
+
+    .main-nav a {
+        margin: 0 !important;
+        font-size: 2rem;
+        font-weight: 800;
+    }
+
+    /* Animação do Ícone X */
+    .hamburger.open span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+
+    /* Ajustes Hero Mobile */
+    .hero-grid-new { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+    }
+    .hero-products-new { display: none; } /* Limpa o visual no celular */
+    
+    .hero-text-new h1 { font-size: 2.8rem; }
 }
+
+.site-footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--slate); }

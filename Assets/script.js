@@ -1,17 +1,56 @@
 /**
  * BILLIGT FILAMENT - JAVASCRIPT ENGINE 2026
- * Fornece: Filtros de categorias, deteção de impressoras e busca em tempo real.
+ * Funções: Filtros de API, Busca em tempo real e Controle de Menu Mobile.
  */
 
 const API_URL = 'https://www.datamarked.dk/?id=8016&apikey=AA99444E55D533FA3C0FB91A991CCA2C465F7C2BE0C89C4826A1852957DE2959';
 let allProducts = [];
 let activeCategory = 'all';
 
-// Keywords para identificar materiais e máquinas
+// Configurações de Identificação
 const materialKeywords = ['PLA', 'PETG', 'SILK', 'ABS', 'TPU', 'ASA', 'NYLON', 'WOOD', 'CARBON'];
 const printerKeywords = ['PRINTER', 'CREALITY', 'BAMBU', 'ANYCUBIC', 'ENDER', 'VORON', 'ELEGOO', 'MACHINE', 'RESIN'];
 
-async function init() {
+/**
+ * 1. NAVEGAÇÃO & MENU MOBILE
+ * Resolve o erro de deslize lateral e organiza a abertura do menu.
+ */
+function initNavigation() {
+    const hamburger = document.getElementById('hamburger');
+    const mainNav = document.getElementById('main-nav');
+    const body = document.body;
+
+    if (!hamburger || !mainNav) return;
+
+    hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.classList.toggle('open');
+        mainNav.classList.toggle('active');
+
+        // CORREÇÃO CRÍTICA: Trava o scroll e evita que a página deslize para os lados
+        if (isOpen) {
+            body.style.overflow = 'hidden';
+            body.style.height = '100vh';
+        } else {
+            body.style.overflow = 'auto';
+            body.style.height = 'auto';
+        }
+    });
+
+    // Fecha o menu ao clicar em qualquer link (importante para SPAs ou âncoras)
+    const navLinks = document.querySelectorAll('.main-nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            mainNav.classList.remove('active');
+            body.style.overflow = 'auto';
+        });
+    });
+}
+
+/**
+ * 2. ENGINE DE PRODUTOS
+ */
+async function initProducts() {
     try {
         const res = await fetch(API_URL);
         if (!res.ok) throw new Error("Netværksfejl");
@@ -21,13 +60,11 @@ async function init() {
             const title = i.title.toUpperCase();
             let category = 'ANDRE';
             
-            // 1. Verificar se é uma Impressora (Prioridade)
+            // Identifica se é impressora ou material
             const isPrinter = printerKeywords.some(k => title.includes(k));
-            
             if (isPrinter) {
                 category = 'PRINTER';
             } else {
-                // 2. Procurar material específico
                 const foundMat = materialKeywords.find(m => title.includes(m));
                 category = foundMat || 'ANDRE';
             }
@@ -47,76 +84,61 @@ async function init() {
     } catch (e) {
         console.error("Fejl:", e);
         const grid = document.getElementById('productGrid');
-        if (grid) grid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">Kunne ikke hente produkter. Prøv igen senere.</p>';
+        if (grid) grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:40px;">Kunne ikke hente produkter. Prøv igen senere.</p>';
     }
 }
 
-/**
- * Cria os botões de filtro. 
- * O botão "Alle" e "3D Printere" são forçados a aparecer primeiro.
- */
 function createMaterialButtons() {
     const container = document.getElementById('materialBoxes');
     if (!container) return;
 
-    // Obtém categorias únicas da API (exceto as que vamos forçar)
     const existingCats = [...new Set(allProducts.map(p => p.category))];
     
-    // Início dos botões (Forçados)
     let html = `
         <button class="material-btn active" data-cat="all">Alle</button>
         <button class="material-btn" data-cat="PRINTER">3D Printere</button>
     `;
     
-    // Adicionar materiais dinamicamente (PLA, PETG, etc.)
     const sortedMaterials = existingCats.filter(c => c !== 'PRINTER' && c !== 'ANDRE').sort();
     sortedMaterials.forEach(cat => {
         html += `<button class="material-btn" data-cat="${cat}">${cat}</button>`;
     });
     
-    // Botão final
     html += `<button class="material-btn" data-cat="ANDRE">Andre</button>`;
-    
     container.innerHTML = html;
 }
 
-/**
- * Renderiza os cards de produto no grid
- */
 function render() {
     const grid = document.getElementById('productGrid');
     if (!grid) return;
 
-    const isHome = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/');
+    // Detecta se estamos na Home para limitar os itens
+    const isHome = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname === '';
     const search = document.getElementById('searchField')?.value.toLowerCase() || '';
     const sort = document.getElementById('sortOrder')?.value || 'default';
 
-    // 1. Filtro por Categoria e Busca
     let list = allProducts.filter(p => {
         const matchesSearch = p.title.toLowerCase().includes(search);
         const matchesCat = activeCategory === 'all' || p.category === activeCategory;
         return matchesSearch && matchesCat;
     });
 
-    // 2. Ordenação por Preço
     if (sort === 'low') list.sort((a, b) => a.price - b.price);
     if (sort === 'high') list.sort((a, b) => b.price - a.price);
     
-    // 3. Limite para a Home
     if (isHome && search === '' && activeCategory === 'all') {
         list = list.slice(0, 8);
     }
 
-    // 4. Injeção do HTML
     if (list.length === 0) {
-        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:50px;">Ingen produkter fundet i denne kategori.</p>';
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:50px;">Ingen produkter fundet.</p>';
         return;
     }
 
     grid.innerHTML = list.map(p => `
         <article class="product-card">
             <div class="img-wrapper">
-                <img src="${p.img}" alt="${p.title}" onerror="this.src='https://placehold.co/400x400?text=Billede+mangler'">
+                <img src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.src='https://placehold.co/400x400?text=Billede+mangler'">
             </div>
             <div class="product-info">
                 <span style="font-size:0.7rem; font-weight:800; color:${p.stock > 0 ? '#10b981' : '#f43f5e'}">
@@ -130,7 +152,9 @@ function render() {
     `).join('');
 }
 
-// Interações de Clique
+/**
+ * 3. EVENT LISTENERS
+ */
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('material-btn')) {
         document.querySelectorAll('.material-btn').forEach(b => b.classList.remove('active'));
@@ -140,10 +164,11 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Inicialização total
+// Inicialização Global
 document.addEventListener('DOMContentLoaded', () => {
-    init();
-    // Ativa os filtros se os elementos existirem
+    initNavigation();
+    initProducts();
+    
     document.getElementById('searchField')?.addEventListener('input', render);
     document.getElementById('sortOrder')?.addEventListener('change', render);
 });

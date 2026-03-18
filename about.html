@@ -11,7 +11,14 @@
     <header class="site-header">
         <div class="container header-grid">
             <a href="index.html" class="logo">BILLIGT<span>FILAMENT</span></a>
-            <nav class="main-nav">
+            
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="main-nav">
                 <a href="index.html">Forside</a>
                 <a href="products.html">Produkter</a>
                 <a href="about.html" class="active">Om os</a>
@@ -29,7 +36,7 @@
             </div>
         </section>
 
-        <section class="container">
+        <section class="container" style="padding: 60px 0;">
             <div class="about-grid">
                 
                 <article class="about-card">
@@ -59,11 +66,15 @@
             </div>
         </section>
 
-        <section class="about-cta container">
-            <div class="cta-box">
-                <h2>Har du spørgsmål?</h2>
-                <p>Vores kundeservice sidder klar til at hjælpe dig med tekniske spørgsmål eller valg af materiale.</p>
-                <a href="mailto:kontakt@billigtfilament.dk" class="btn-buy" style="display:inline-block; width:auto; padding:15px 40px;">Kontakt os nu</a>
+        <section class="container" style="padding-bottom: 80px;">
+            <div class="cta-box" style="background: var(--ice); padding: 60px; border-radius: 24px; text-align: center; border: 1px solid var(--border);">
+                <h2 style="font-size: 2.2rem; margin-bottom: 15px; letter-spacing: -1px;">Har du spørgsmål?</h2>
+                <p style="color: var(--slate); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Vores kundeservice sidder klar til at hjælpe dig med tekniske spørgsmål eller valg af materiale.
+                </p>
+                <a href="mailto:kontakt@billigtfilament.dk" class="btn-buy" style="display:inline-block; width:auto; padding:18px 45px; border-radius: 50px;">
+                    Kontakt os nu
+                </a>
             </div>
         </section>
     </main>
@@ -74,5 +85,6 @@
         </div>
     </footer>
 
+    <script src="Assets/script.js"></script>
 </body>
 </html>
