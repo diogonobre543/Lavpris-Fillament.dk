@@ -17,43 +17,35 @@
         </div>
     </header>
 
-    <main class="container" style="padding: 40px 0;">
-        <h1 style="margin-bottom: 10px;">Vores Sortiment</h1>
-        <p id="count" class="results-count">Henter produkter...</p>
+    <main class="container" style="padding: 60px 0;">
+        <h1 style="font-size: 2.8rem; margin-bottom: 40px; letter-spacing: -2px;">Vores Sortiment</h1>
 
-        <div class="filters-container">
-            <div class="filter-group">
-                <label>Søg</label>
-                <input type="text" id="searchField" placeholder="Søg her...">
+        <div class="filters-wrapper">
+            <div class="filter-row">
+                <div>
+                    <label class="filter-label">Søg i kataloget</label>
+                    <input type="text" id="searchField" class="search-input" placeholder="Søg her...">
+                </div>
+                <div>
+                    <label class="filter-label">Sortér efter</label>
+                    <select id="sortOrder" class="sort-select">
+                        <option value="default">Mest relevante</option>
+                        <option value="low">Pris: Lav til Høj</option>
+                        <option value="high">Pris: Høj til Lav</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="filter-group">
-                <label>Kategori</label>
-                <select id="categoryFilter" class="filter-input">
-                    <option value="all">Alle Materialer</option>
-                    <option value="PLA">PLA</option>
-                    <option value="PETG">PETG</option>
-                    <option value="SILK">Silk</option>
-                </select>
-            </div>
-
-            <div class="filter-group">
-                <label>Sortér efter</label>
-                <select id="sortOrder" class="filter-input">
-                    <option value="default">Relevans</option>
-                    <option value="low">Pris: Lav til Høj</option>
-                    <option value="high">Pris: Høj til Lav</option>
-                </select>
-            </div>
-
-            <div class="filter-group" style="justify-content: center; flex-direction: row; align-items: center; gap: 10px; padding-top: 20px;">
-                <input type="checkbox" id="stockFilter" class="filter-input" style="width: 20px; height: 20px;">
-                <label style="margin: 0; cursor: pointer;" for="stockFilter">Kun på lager</label>
+            <div>
+                <label class="filter-label">Vælg Kategori / Materiale</label>
+                <div class="material-boxes" id="materialBoxes">
+                    <button class="material-btn active" data-cat="all">Alle</button>
+                    <button class="material-btn" data-cat="PRINTER">3D Printere</button>
+                </div>
             </div>
         </div>
 
-        <div id="productGrid" class="product-grid">
-            </div>
+        <div id="productGrid" class="product-grid"></div>
     </main>
 
     <footer class="site-footer"><p>&copy; 2026 Billigt Filament ApS</p></footer>

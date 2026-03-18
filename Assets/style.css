@@ -1,311 +1,119 @@
-/* BILLIGT FILAMENT - PREMIUM DESIGN SYSTEM 2026 
-   Cores: Azul Profundo, Gelo e Branco Neve
+/* BILLIGT FILAMENT - DEFINITIVE EDITION 2026 
+   Sistema de Design: Moderno, Limpo e Responsivo
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --primary: #2563eb;       /* Azul Royal */
-    --primary-hover: #1d4ed8;
-    --navy: #0f172a;          /* Azul Marinho (Texto principal) */
-    --slate: #64748b;         /* Cinza (Texto secundário) */
-    --ice: #f8fafc;           /* Fundo de cards e secções */
+    --primary: #2563eb;
+    --navy: #0f172a;
+    --slate: #64748b;
+    --ice: #f8fafc;
     --white: #ffffff;
     --border: #e2e8f0;
     --success: #10b981;
-    --danger: #f43f5e;
     --font: 'Plus Jakarta Sans', sans-serif;
-    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
 }
 
-/* RESET & BASE */
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-}
+/* 1. GLOBAL & HEADER */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); color: var(--navy); background: white; line-height: 1.6; }
+.container { width: min(1200px, 92%); margin: 0 auto; }
 
-body { 
-    background-color: var(--white); 
-    color: var(--navy); 
-    font-family: var(--font); 
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-}
-
-.container { 
-    width: min(1200px, 92%); 
-    margin: 0 auto; 
-}
-
-/* HEADER & NAV */
 .site-header {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    padding: 18px 0;
+    padding: 20px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-}
-
-.header-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    text-decoration: none;
-    color: var(--navy);
-    letter-spacing: -1px;
-}
-
-.logo span {
-    color: var(--primary);
-}
-
-.main-nav a {
-    margin-left: 30px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--navy);
-    transition: var(--transition);
-}
-
-.main-nav a:hover {
-    color: var(--primary);
-}
-
-/* HERO SECTION */
-.hero {
-    padding: 100px 0;
-    text-align: center;
-    background: radial-gradient(circle at top, #eff6ff 0%, #ffffff 100%);
     border-bottom: 1px solid var(--border);
 }
+.header-grid { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--navy); letter-spacing: -1px; }
+.logo span { color: var(--primary); }
+.main-nav a { margin-left: 25px; font-weight: 600; text-decoration: none; color: var(--navy); font-size: 0.9rem; }
+.main-nav a.active { color: var(--primary); }
 
-.hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 800;
-    letter-spacing: -2px;
-    line-height: 1.1;
-    margin-bottom: 24px;
+/* 2. HERO SECTION (HOME) */
+.home-hero-new {
+    background: radial-gradient(circle at 70% 30%, #ffffff 0%, #f1f5f9 100%);
+    padding: 80px 0;
 }
+.hero-grid-new { display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; }
+.hero-text-new h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 800; line-height: 1; letter-spacing: -3px; margin-bottom: 25px; }
+.hero-text-new p { font-size: 1.2rem; color: var(--slate); margin-bottom: 40px; max-width: 500px; }
 
-.hero p {
-    color: var(--slate);
-    font-size: 1.2rem;
-    max-width: 650px;
-    margin: 0 auto 40px;
-}
+.hero-products-new { display: flex; gap: 20px; justify-content: flex-end; }
+.hero-card-1 { transform: rotate(-6deg) translateY(20px); }
+.hero-card-2 { transform: rotate(4deg) translateY(-20px); }
 
-/* FILTROS (Página de Produtos) */
-.filters-container {
+/* 3. FILTROS (PRODUTOS) - RESOLVE O "AMONTOADO" */
+.filters-wrapper {
     background: var(--ice);
-    padding: 30px;
+    padding: 35px;
     border-radius: 24px;
     border: 1px solid var(--border);
-    margin-bottom: 50px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    align-items: flex-end;
+    margin: 40px 0;
 }
+.filter-row { display: flex; gap: 25px; margin-bottom: 30px; flex-wrap: wrap; }
+.filter-group { flex: 1; min-width: 250px; display: flex; flex-direction: column; gap: 8px; }
+.filter-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--slate); letter-spacing: 1px; }
 
-.filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.search-input, .sort-select {
+    width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--border);
+    background: white; font-family: inherit; font-size: 0.95rem; outline: none; transition: 0.3s;
 }
+.search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
 
-.filter-group label {
-    font-size: 0.75rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--slate);
-    letter-spacing: 0.5px;
+.material-selection { border-top: 1px solid var(--border); padding-top: 25px; }
+.material-boxes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+.material-btn {
+    background: white; border: 1px solid var(--border); padding: 12px 20px;
+    border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s;
 }
+.material-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
 
-.filter-group select, 
-.filter-group input[type="text"] {
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: var(--white);
-    font-family: inherit;
-    font-size: 0.95rem;
-    outline: none;
-    transition: var(--transition);
-}
-
-.filter-group input:focus, 
-.filter-group select:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-/* PRODUCT GRID & CARDS */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 32px;
-    padding: 20px 0;
-}
-
+/* 4. CARDS DE PRODUTOS - DESIGN PREMIUM */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding-bottom: 80px; }
 .product-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 12px;
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-    border: 1px solid transparent;
+    background: white; border-radius: 24px; padding: 20px; border: 1px solid var(--border);
+    display: flex; flex-direction: column; transition: 0.4s ease; height: 100%;
 }
-
-.product-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--border);
-    box-shadow: var(--shadow);
-}
+.product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
 
 .img-wrapper {
-    background: var(--ice);
-    border-radius: 16px;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin-bottom: 16px;
+    background: var(--ice); border-radius: 18px; aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden;
 }
+.img-wrapper img { width: 85%; height: 85%; object-fit: contain; transition: 0.4s; }
+.product-card:hover img { transform: scale(1.08); }
 
-.product-card img {
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
-    transition: var(--transition);
-}
+.stock-tag { color: var(--success); font-size: 0.75rem; font-weight: 800; margin-bottom: 10px; display: block; }
+.product-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; min-height: 3rem; color: var(--navy); }
+.price { font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-top: auto; }
 
-.product-card:hover img {
-    transform: scale(1.08);
-}
-
-.product-info {
-    padding: 4px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.stock-tag {
-    font-size: 0.7rem;
-    font-weight: 800;
-    margin-bottom: 8px;
-}
-
-.stock-tag.in { color: var(--success); }
-.stock-tag.out { color: var(--danger); }
-
-.product-card h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--navy);
-    height: 3rem;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-
-.price {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--navy);
-    margin-top: auto;
-}
-
+/* BOTÃO DE COMPRA (ADEUS LINKS AZUIS) */
 .btn-buy {
-    display: block;
-    background: var(--navy);
-    color: var(--white);
-    text-align: center;
-    padding: 14px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    margin-top: 16px;
-    transition: var(--transition);
-    font-size: 0.9rem;
+    background: var(--navy); color: white; text-align: center; padding: 15px;
+    border-radius: 12px; font-weight: 700; margin-top: 20px; display: block; text-decoration: none; transition: 0.3s;
 }
+.btn-buy:hover { background: var(--primary); }
 
-.btn-buy:hover {
-    background: var(--primary);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-}
+/* 5. PÁGINA OM OS (MISSÃO) */
+.about-hero { padding: 100px 0 60px; text-align: center; background: var(--ice); }
+.about-hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -2px; }
+.about-hero .subtitle { font-size: 1.2rem; color: var(--slate); max-width: 650px; margin: 0 auto; }
 
-/* ABOUT PAGE & OTHERS */
-.content-section {
-    max-width: 800px;
-    margin: 80px auto;
-    text-align: center;
-}
+.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+.about-card { background: white; padding: 40px; border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+.about-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
 
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-}
-
-.info-card {
-    padding: 30px;
-    background: var(--ice);
-    border-radius: 20px;
-    text-align: left;
-}
-
-.info-card h3 {
-    margin-bottom: 15px;
-    color: var(--primary);
-}
-
-/* FOOTER */
-.site-footer {
-    background: var(--white);
-    border-top: 1px solid var(--border);
-    padding: 60px 0;
-    text-align: center;
-    margin-top: 80px;
-}
-
-.footer-copy {
-    color: var(--slate);
-    font-size: 0.9rem;
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 768px) {
-    .header-grid {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .main-nav a {
-        margin: 0 10px;
-    }
-    
-    .hero {
-        padding: 60px 0;
-    }
-    
-    .filters-container {
-        padding: 20px;
-        grid-template-columns: 1fr;
-    }
+/* 6. RESPONSIVIDADE */
+@media (max-width: 900px) {
+    .hero-grid-new { grid-template-columns: 1fr; text-align: center; }
+    .hero-text-new p { margin: 0 auto 30px; }
+    .hero-products-new { justify-content: center; margin-top: 40px; }
+    .hero-card-1, .hero-card-2 { transform: none; }
 }

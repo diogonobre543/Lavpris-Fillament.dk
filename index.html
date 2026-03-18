@@ -2,34 +2,90 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Billigt Filament | Forside</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billigt Filament | Kvalitets 3D Print</title>
     <link rel="stylesheet" href="Assets/style.css">
 </head>
 <body>
+
     <header class="site-header">
         <div class="container header-grid">
             <a href="index.html" class="logo">BILLIGT<span>FILAMENT</span></a>
             <nav class="main-nav">
-                <a href="index.html">Forside</a>
+                <a href="index.html" class="active">Forside</a>
                 <a href="products.html">Produkter</a>
                 <a href="about.html">Om os</a>
             </nav>
         </div>
     </header>
+
     <main>
-        <section class="hero">
-            <div class="container">
-                <h1>Premium Filament <br> til de bedste priser</h1>
-                <p>Dag-til-dag levering i hele Danmark. Vi hjælper dig med at få det bedste ud af din 3D printer.</p>
-                <a href="products.html" class="btn-buy" style="display:inline-block; width:auto; padding:15px 40px; border-radius:50px;">Shop Sortimentet</a>
+        <section class="home-hero-new">
+            <div class="container hero-grid-new">
+                
+                <div class="hero-text-new">
+                    <h1>Kvalitets Filament <br> til de bedste priser</h1>
+                    <p>
+                        Danmarks største udvalg af 3D print materialer og maskiner. 
+                        Vi leverer direkte til din dør med dag-til-dag levering.
+                    </p>
+                    <div class="hero-btns">
+                        <a href="products.html" class="btn-buy" style="display:inline-block; width:auto; padding:18px 45px; border-radius:50px;">
+                            Shop Sortimentet
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-products-new">
+                    <article class="product-card hero-card-1">
+                        <div class="img-wrapper">
+                            <img src="https://www.signproduction.co.uk/img/6/380x400/crealityender3v3se100102051429564_2_1564878.webp" alt="Creality Ender 3 V3 SE">
+                        </div>
+                        <div class="product-info">
+                            <span class="stock-tag">● PÅ LAGER</span>
+                            <h3>Creality Ender 3 V3 SE</h3>
+                            <div class="price">1.899,00 kr.</div>
+                        </div>
+                    </article>
+
+                    <article class="product-card hero-card-2">
+                        <div class="img-wrapper">
+                            <img src="https://www.signproduction.co.uk/img/6/380x400/silkywhite_01_1562960.jpg" alt="Silky White Filament">
+                        </div>
+                        <div class="product-info">
+                            <span class="stock-tag">● PÅ LAGER</span>
+                            <h3>Premium PLA Silky White</h3>
+                            <div class="price">169,00 kr.</div>
+                        </div>
+                    </article>
+                </div>
+
             </div>
         </section>
-        <section class="container" style="padding: 60px 0;">
-            <h2 style="margin-bottom:30px;">Udvalgte Nyheder</h2>
-            <div id="productGrid" class="product-grid"></div>
+
+        <section class="container" style="padding: 80px 0;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+                <div>
+                    <h2 style="font-size: 2.5rem; letter-spacing: -2px; font-weight: 800;">Udvalgte Nyheder</h2>
+                    <p style="color: var(--slate);">Vores mest populære produkter lige nu</p>
+                </div>
+                <a href="products.html" style="color: var(--primary); font-weight: 700; text-decoration: none;">
+                    Se alle produkter &rarr;
+                </a>
+            </div>
+
+            <div id="productGrid" class="product-grid">
+                <p style="grid-column: 1/-1; text-align: center; padding: 50px; color: var(--slate);">Indlæser produkter...</p>
+            </div>
         </section>
     </main>
-    <footer class="site-footer"><p>&copy; 2026 Billigt Filament ApS</p></footer>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Billigt Filament ApS. Kvalitetsmaterialer til 3D print.</p>
+        </div>
+    </footer>
+
     <script src="Assets/script.js"></script>
 </body>
 </html>
